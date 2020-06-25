@@ -1,3 +1,4 @@
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 
@@ -6,7 +7,8 @@
 <script type="text/javascript">google.load("jquery", "1.3.2");</script>
 <style type="text/css">
   body {
-    font-family: "Titillium Web","HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    /* font-family: "Titillium Web","HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; */
+    font-family: "Avenir", sans-serif;
     font-weight:300;
     font-size:18px;
     margin-left: auto;
@@ -119,7 +121,7 @@
 <html>
   <head>
 
-	<title>Palindromes</title>
+	<title>VideoWalk</title>
 	<meta property="og:title" content="Space-Time Correspondence as a Random Walk " />
 	<meta property="og:image" content="" />
 	<meta property="og:image:width" content="3000" />
@@ -127,7 +129,7 @@
   </head>
 
   <body>
-    <br>
+    <br><br><br><br>
           <center>
           	<span style="font-size:36px">Space-Time Correspondence as a Random Walk</span>
 		    <br><br>
@@ -151,23 +153,22 @@
 		  		  		</center>
 		  		  	  </td>
 			  </table>
-          		<!-- <span style="font-size:30px">ECCV 2016.</span> -->
 
 	  		  <table align=center width=650px>
 	  			  <tr>
+              <td align=center width=150px>
+                <center>
+                  <span style="font-size:24px"><a href="figs/arxiv.v1.pdf"> [Paper]</a></span>
+                  </center>
+                  </td>
 	  	          <td align=center width=150px>
 	  					<center>
-	  						<span style="font-size:24px"><a href=""> [GitHub]</a></span>
+	  						<span style="font-size:24px"><a href="http://www.github.com/ajabri/videowalk"> [Code]</a></span>
 		  		  		</center>
 		  		  	  </td>
                 <td align=center width=150px>
 	  					<center>
 	  						<span style="font-size:24px"><a href=""> [Slides]</a></span>
-		  		  		</center>
-		  		  	  </td>
-	  	          <td align=center width=150px>
-	  					<center>
-	  						<span style="font-size:24px"><a href=""> [Paper]</a></span>
 		  		  		</center>
 		  		  	  </td>
 	  	          <td align=center width=150px>
@@ -183,12 +184,12 @@
 <!--   		  <br><br>
 		  <hr> -->
 
-  		  <br>
+  		  <br><br>
   		  <table align=center width=850px>
   			  <tr>
             <td width=400px>
     					<center>
-    	                	<a href="./figures/"><img src = "./figures/" width="100%"></img></href></a><br>
+    	                	<a href="figs/teaser_animation.gif"><img src = "figs/teaser_animation.gif" width="100%"></img></href></a><br>
   					  </center>
             </td>
           </tr>
@@ -201,33 +202,46 @@
 		  <hr>
 
   		  <table align=center width=850px>
-	  		  <center><h1>Abstract</h1></center>
+          <center><h1>Abstract</h1></center>
+          This paper proposes a simple self-supervised approach for learning representations
+          for visual correspondence from raw video. We cast correspondence as link prediction in a space-time graph constructed from a video. In this graph, the nodes
+          are patches sampled from each frame, and nodes adjacent in time can share a
+          directed edge. We learn a node embedding in which pairwise similarity defines
+          transition probabilities of a random walk. Prediction of long-range correspondence
+          is efficiently computed as a walk along this graph. The embedding learns to guide
+          the walk by placing high probability along paths of correspondence. Targets are
+          formed without supervision, by cycle-consistency: we train the embedding to maximize the likelihood of returning to the initial node when walking along a graph
+          constructed from a 'palindrome' of frames. We demonstrate that the approach allows
+          for learning representations from large unlabeled video. Despite its simplicity,
+          the method outperforms the self-supervised state-of-the-art on a variety of label
+          propagation tasks involving objects, semantic parts, and pose. Moreover, we show
+          that self-supervised adaptation at test-time and edge dropout improve transfer for
+          object-level correspondence.
 			</table>
 
 
   		  <br><br>
 		  </table>
 
-          <br>
-		  <hr>
+		  <!-- <hr> -->
 
 
   		  <!-- <table align=center width=550px> -->
-  		  <table align=center width=425px>
+  		  <!-- <table align=center width=425px>
 	 		<center><h1>Results on Tracking Texture, Mask and Pose</h1></center>
   			  <tr>
               </tr>
-  		  </table>
+  		  </table> -->
 		  <br>
 
       <br>
 		  <hr>
 
       <center>
-      <h1>Video for More Results</h1>
+      <h1>Video for More Results (Coming Soon)</h1>
       <table border="0" align="center" cellspacing="0" cellpadding="20">
           <td align="center" valign="middle">
-          <iframe width="560" height="315" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          <iframe width="0" height="0" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
       </td>
       </table>
       </center>
@@ -239,12 +253,12 @@
   		  <table align=center width=800px>
 	 		<center><h1>Paper</h1></center>
   			  <tr>
-				  <td><a href=""><img class="layered-paper-big" style="height:175px" src="./figures/paper_shot.jpg"/></a></td>
+				  <td><a href=""><img class="layered-paper-big" style="height:175px" src="./figs/firstpage.png"/></a></td>
 				  <td><span style="font-size:14pt">Allan Jabri, Andrew Owens, Alexei A. Efros.<br>
 				  <i>Space-Time Correspondence as a Contrastive Random Walk.</i><br>
 				  In Submission.<br>
-				  (hosted on <a href="https://arxiv.org/abs/1903.07593">arXiv</a>)</a>
-          <span style="font-size:4pt"><a href="https://arxiv.org/pdf/1903.07593.pdf"><br></a>
+				  (hosted on <a href="">arXiv</a>)</a>
+          <span style="font-size:4pt"><a href=""><br></a>
 				  </span>
 				  </td>
   	              </td>
@@ -266,7 +280,14 @@
   			  <tr>
   	              <td width=400px>
   					<left>
-	  		  <center><h1>Acknowledgements</h1></center>
+          <center><h1>Acknowledgements</h1></center>
+          We thank Amir Zamir, Ashish Kumar, Tim Brooks, Bill Peebles, Dave Epstein,
+          Armand Joulin, and Jitendra Malik for very helpful feedback. We are also grateful to the wonderful
+          members of VGG group for hosting us during a dreamy semester at Oxford. This work would not
+          have been possible without the hospitality of Port Meadow and the swimming pool on Iffley Road.
+          Research was supported, in part, by NSF grant IIS-1633310, the DARPA MCS program, and NSF
+          IIS-1522904. AJ is supported by the PD Soros Fellowship
+
         </table>
     		  <br><br>
   		  </table>
