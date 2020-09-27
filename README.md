@@ -1,3 +1,3 @@
-# Space-Time Correspondence as a Random Walk
+# Space-Time Correspondence as a Contrastive Random Walk
 
 Coming soon!
