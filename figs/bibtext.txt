@@ -1,0 +1,6 @@
+@article{jabri2020spacetime,
+  title={Space-Time Correspondence as a Contrastive Random Walk},
+  author={Jabri, Allan and Owens, Andrew and Efros, Alexei A},
+  journal={Neural Information Processing Systems},
+  year={2020}
+}
