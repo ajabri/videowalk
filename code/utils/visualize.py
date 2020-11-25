@@ -144,7 +144,7 @@ def nn_patches(vis, P, A_k, prefix='', N=10, K=20):
 
 
 def compute_flow(corr):
-    # assume corr is shape N x H * W x W x H
+    # assume batched affinity, shape N x H * W x W x H
     h = w = int(corr.shape[-1] ** 0.5)
 
     # x1 -> x2
@@ -164,10 +164,11 @@ def compute_flow(corr):
 
     return u, v
 
-def vis_flow_plt(u, v, x1, x2):
+def vis_flow_plt(u, v, x1, x2, A):
     flows = torch.stack([u, v], dim=-1).cpu().numpy()
-    I, flows = x1.cpu().numpy()[0], flows[0]
+    I, flows = x1.cpu().numpy(), flows[0]
 
+    H, W = flows.shape[:2]
     Ih, Iw, = I.shape[-2:]
     mx, my = np.mgrid[0:Ih:Ih/(H+1), 0:Iw:Iw/(W+1)][:, 1:, 1:]
     skip = (slice(None, None, 1), slice(None, None, 1))
@@ -176,14 +177,16 @@ def vis_flow_plt(u, v, x1, x2):
     fig, ax = plt.subplots()
     im = ax.imshow((I.transpose(1,2,0)),)
     
-    C = cm.jet(F.softmax((A1[0] * A1[0].log()).sum(-1).cpu(), dim=-1))
+    C = cm.jet(torch.nn.functional.softmax((A * A.log()).sum(-1).cpu(), dim=-1))
     ax.quiver(my[skip], mx[skip], flows[...,0][skip], flows[...,1][skip]*-1, C)#, scale=1, scale_units='dots')
     # ax.quiver(mx[skip], my[skip], flows[...,0][skip], flows[...,1][skip])
 
     return plt
     
 def frame_pair(x, ff, mm, t1, t2, A, AA, xent_loss, viz):
-    normalize = lambda x: (x-x.min()) / (x-x.min()).max()
+    normalize = lambda xx: (xx-xx.min()) / (xx-xx.min()).max()
+    spatialize = lambda xx: xx.view(*xx.shape[:-1], int(xx.shape[-1]**0.5), int(xx.shape[-1]**0.5))
+
     N = AA.shape[-1]
     H = W = int(N**0.5)
     AA = AA.view(-1, H * W, H, W)
@@ -198,24 +201,23 @@ def frame_pair(x, ff, mm, t1, t2, A, AA, xent_loss, viz):
 
     if len(x.shape) < 6:   # Single image input, no patches
         # X here is B x C x T x H x W
-        x1, x2 = x[0, :, t1].clone(), x[0, :, t2].clone()
-        x1, x2 = normalize(x1), normalize(x2)
+        x1, x2 = normalize(x[0, :, t1]), normalize(x[0, :, t2])
+        f1, f2 = ff[0, :, t1], ff[0, :, t2]
+        ff1 , ff2 = spatialize(f1), spatialize(f2)
 
         xx = torch.stack([x1, x2]).detach().cpu()
         viz.images(xx, win='imgs')
 
         # Flow
-        # u, v = compute_flow(A[0:1])
-        # flow_plt = vis_flow_plt(u, v)
-        # viz.matplot(flow_plt, win='flow_quiver')
+        u, v = compute_flow(A[0:1])
+        flow_plt = vis_flow_plt(u, v, x1, x2, A[0])
+        viz.matplot(flow_plt, win='flow_quiver')
 
         # Keypoint Correspondences
-        kp_corr = draw_matches(f1[0], f2[0], x1, x2)
+        kp_corr = draw_matches(f1, f2, x1, x2)
         viz.image(kp_corr, win='kpcorr')
 
         # # PCA VIZ
-        spatialize = lambda xx: xx.view(*xx.shape[:-1], int(xx.shape[-1]**0.5), int(xx.shape[-1]**0.5))
-        ff1 , ff2 = spatialize(f1[0]), spatialize(f2[0])
         pca_ff = pca_feats(torch.stack([ff1,ff2]).detach().cpu())
         pca_ff = make_gif(pca_ff, outname=None)
         viz.images(pca_ff.transpose(0, -1, 1, 2), win='pcafeats', opts=dict(title=f"{t1} {t2}"))
