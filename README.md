@@ -96,7 +96,7 @@ To evaluate a trained model on the DAVIS task, clone the [davis2017-evaluation](
 **Label Propagation:**
 ```
 python test.py --filelist /path/to/davis/vallist.txt \
---model-type scratch --resume pretrained.pth --save-path /save/path \
+--model-type scratch --resume ../pretrained.pth --save-path /save/path \
 --topk 10 --videoLen 20 --radius 12  --temperature 0.05  --cropSize -1
 ```
 Though `test.py` expects a model file created with `train.py`, it can easily be modified to be used with other networks. Note that we simply use the same temperature used at training time.
@@ -112,7 +112,7 @@ python test.py --filelist /path/to/davis/vallist.txt \
 **Post-Process:**  
 ```
 # Convert
-python eval/davis/convert_davis.py --in_folder /save/path/ --out_folder /converted/path --dataset /davis/path/
+python eval/convert_davis.py --in_folder /save/path/ --out_folder /converted/path --dataset /davis/path/
 
 # Compute metrics
 python /path/to/davis2017-evaluation/evaluation_method.py \
