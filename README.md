@@ -5,10 +5,24 @@
 <img src="https://github.com/ajabri/videowalk/raw/master/figs/teaser_animation.gif" width="600">
 </p>
 
-This is the repository for *Space-Time Correspondence as a Contrastive Random Walk* by Allan Jabri, Andrew Owens, and Alexei A. Efros. 
+This is the repository for *Space-Time Correspondence as a Contrastive Random Walk*, published at NeurIPS 2020.  
 
-This work is to be presented at NeurIPS 2020. Here's the [project page](http://ajabri.github.io/videowalk).
+[[Paper](https://arxiv.org/abs/2006.14613)]
+[[Project Page](http://ajabri.github.io/videowalk)]
+[[Slides](http://ajabri.github.io/videowalk)]
+[[Talk](https://youtu.be/UaOcjxrPaho)]
+[[Slides](https://www.dropbox.com/s/qrqb0ssjlh1tph1/jabri.nips.12min.public.key)]
+[[Poster](https://www.dropbox.com/s/snpj68cssu3b4to/jabri.neurips2020.poster.pdf)]
 
+```
+@inproceedings{jabri2020walk,
+    Author = {Allan Jabri and Andrew Owens and Alexei A. Efros},
+    Title = {Space-Time Correspondence as a Contrastive Random Walk},
+    Booktitle = {Advances in Neural Information Processing Systems},
+    Year = {2020},
+}
+```
+Consider citing our work or acknowledging this repository if you found this code to be helpful :)
 
 ##  Requirements
 - pytorch (>1.3)
@@ -108,16 +122,4 @@ python eval/run_test.py --model-path /path/to/model --L 20 --K 10  --T 0.05 --cr
 
 
 ## Test-time Adaptation
-Coming soon.
-
-
-## Reference
-Please consider citing our work if you found this repository to be helpful.
-```
-@inproceedings{jabri2020walk,
-    Author = {Allan Jabri and Andrew Owens and Alexei A. Efros},
-    Title = {Space-Time Correspondence as a Contrastive Random Walk},
-    Booktitle = {Advances in Neural Information Processing Systems},
-    Year = {2020},
-}
-```
+To do.
