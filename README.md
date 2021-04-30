@@ -9,10 +9,9 @@ This is the repository for *Space-Time Correspondence as a Contrastive Random Wa
 
 [[Paper](https://arxiv.org/abs/2006.14613)]
 [[Project Page](http://ajabri.github.io/videowalk)]
-[[Slides](http://ajabri.github.io/videowalk)]
-[[Talk](https://youtu.be/UaOcjxrPaho)]
 [[Slides](https://www.dropbox.com/s/qrqb0ssjlh1tph1/jabri.nips.12min.public.key)]
 [[Poster](https://www.dropbox.com/s/snpj68cssu3b4to/jabri.neurips2020.poster.pdf)]
+[[Talk](https://youtu.be/UaOcjxrPaho)]
 
 ```
 @inproceedings{jabri2020walk,
