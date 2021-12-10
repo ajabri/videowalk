@@ -2,21 +2,21 @@ import datetime
 import os
 import time
 import sys
-import numpy as np
 
+import numpy as np
 import torch
+import torchvision
+from torch import nn
 import torch.utils.data
 from torch.utils.data.dataloader import default_collate
-from torch import nn
-import torchvision
+from torchvision.datasets.samplers.clip_sampler import RandomClipSampler, UniformClipSampler
 
 import data
 from data.kinetics import Kinetics400
 from data.video import VideoList
-from torchvision.datasets.samplers.clip_sampler import RandomClipSampler, UniformClipSampler
-
-import utils
 from model import CRW
+import utils
+
 
 def train_one_epoch(model, optimizer, lr_scheduler, data_loader, device, epoch, print_freq,
     vis=None, checkpoint_fn=None):
